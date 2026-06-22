@@ -1,0 +1,11 @@
+/public/
+/resources/
+/node_modules/
+.hugo_build.lock
+
+# Original design reference (saved third-party HTML/CSS/JS, not part of the site)
+/design-reference/
+
+# OS cruft
+.DS_Store
+Thumbs.db

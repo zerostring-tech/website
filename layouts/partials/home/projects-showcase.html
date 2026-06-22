@@ -1,0 +1,37 @@
+{{ $colors := slice "cyan" "pink" "purple" }}
+{{ $projects := .Site.GetPage "/projects" }}
+{{ if $projects }}
+  {{ $pages := $projects.Pages.ByWeight }}
+  {{ $n := len $pages }}
+  {{ $duration := mul $n 6 }}
+  {{ $minSlots := 20 }}
+  {{ $reps := add (div (sub $minSlots 1) $n) 1 }}
+  {{ if lt $reps 2 }}{{ $reps = 2 }}{{ end }}
+
+  <section class="border-t border-white/5 py-20">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h2 class="font-display text-3xl font-bold text-neon-cyan text-glow-cyan sm:text-4xl">What We're Building</h2>
+          <p class="mt-3 font-mono text-gray-400">Projects we shipped and in progress.</p>
+        </div>
+        <a href="{{ "/projects/" | relURL }}" class="font-mono text-sm uppercase text-neon-purple transition-colors hover:text-glow-purple">
+          View All Projects &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-fade-x relative mt-10 overflow-hidden">
+      <div class="animate-marquee flex w-max gap-6" style="animation-duration: {{ $duration }}s; --marquee-shift: calc(-100% / {{ $reps }})">
+        {{ range $rep := seq $reps }}
+          {{ range $i, $p := $pages }}
+            {{ $color := index $colors (mod $i (len $colors)) }}
+            <div class="w-[300px] flex-shrink-0 sm:w-[340px]" {{ if gt $rep 1 }}aria-hidden="true"{{ end }}>
+              {{ partial "project-card.html" (dict "page" $p "color" $color) }}
+            </div>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

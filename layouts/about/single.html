@@ -1,0 +1,82 @@
+{{ define "main" }}
+{{ $border := dict
+  "cyan" "border-neon-cyan/60"
+  "pink" "border-neon-pink/60"
+  "purple" "border-neon-purple/60"
+  "blue" "border-neon-blue/60"
+}}
+
+<section class="px-6 py-20 text-center">
+  <div class="mx-auto max-w-6xl">
+    <h1 class="font-display text-2xl font-extrabold text-white sm:whitespace-nowrap sm:text-3xl md:text-4xl lg:text-5xl">
+      From <span class="text-neon-pink text-glow-pink">{{ .Params.heroHighlight1 }}</span> to <span class="text-neon-cyan text-glow-cyan">{{ .Params.heroHighlight2 }}</span>
+    </h1>
+  </div>
+  <div class="mx-auto mt-6 max-w-3xl">
+    <p class="font-mono text-gray-300">{{ .Params.heroLead }}</p>
+  </div>
+
+  <div class="mx-auto mt-16 grid max-w-5xl gap-6 text-left sm:grid-cols-2">
+    <div class="card-surface rounded-lg border border-neon-cyan/50 p-8">
+      <h2 class="font-display text-xl font-bold text-neon-cyan text-glow-cyan">Our Mission</h2>
+      <p class="mt-4 font-mono text-sm text-gray-300">{{ .Params.missionText }}</p>
+    </div>
+    <div class="card-surface rounded-lg border border-neon-pink/50 p-8">
+      <h2 class="font-display text-xl font-bold text-neon-pink text-glow-pink">Our Vision</h2>
+      <p class="mt-4 font-mono text-sm text-gray-300">{{ .Params.visionText }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="px-6 py-10">
+  <div class="grid-backdrop relative mx-auto max-w-6xl overflow-hidden rounded-2xl border border-amber-500/40 px-8 py-16 text-center">
+    <h2 class="font-display text-3xl font-bold text-neon-pink text-glow-pink sm:text-4xl">{{ .Params.whyHeading }}</h2>
+
+    <div class="relative mx-auto mt-8 max-w-3xl space-y-6 text-left font-mono text-gray-300">
+      <p>{{ .Params.storyParagraph1 }}</p>
+      <p>{{ .Params.storyParagraph2 }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="px-6 py-20 text-center">
+  <div class="mx-auto">
+    <h2 class="font-display text-3xl font-bold text-neon-purple text-glow-purple sm:text-4xl">Our core values</h2>
+    <div class="mx-auto mt-3 h-px w-20 bg-neon-purple/70"></div>
+  </div>
+
+  <div class="mx-auto mt-12 grid max-w-5xl gap-6 text-left sm:grid-cols-2">
+    {{ range .Site.Data.about.values }}
+      <div class="card-surface flex gap-4 rounded-lg border {{ index $border .color }} p-6">
+        <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-neon-cyan">
+          <span class="h-5 w-5">{{ partial "icon.html" .icon }}</span>
+        </div>
+        <div>
+          <h3 class="font-display text-lg font-bold text-white">{{ .title }}</h3>
+          <p class="mt-2 font-mono text-sm text-gray-400">{{ .description }}</p>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="border-t border-white/5 px-6 py-20 text-center">
+  {{ $socialColors := slice "cyan" "pink" "purple" }}
+  {{ $socialStyle := dict
+    "cyan" "border-neon-cyan/50 text-neon-cyan hover:bg-neon-cyan/10"
+    "pink" "border-neon-pink/50 text-neon-pink hover:bg-neon-pink/10"
+    "purple" "border-neon-purple/50 text-neon-purple hover:bg-neon-purple/10"
+  }}
+  <h2 class="font-display text-3xl font-bold text-neon-cyan text-glow-cyan sm:text-4xl">Follow Us</h2>
+  <p class="mx-auto mt-3 max-w-xl font-mono text-gray-400">Follow along as we build — product updates, new projects, and the occasional behind-the-scenes note.</p>
+
+  <div class="mx-auto mt-10 flex max-w-2xl flex-wrap items-center justify-center gap-4">
+    {{ range $i, $s := .Site.Data.social }}
+      {{ $color := index $socialColors (mod $i (len $socialColors)) }}
+      <a href="{{ $s.url }}" target="_blank" rel="noopener" aria-label="{{ $s.name }}" class="flex h-14 w-14 items-center justify-center rounded-lg border transition-colors {{ index $socialStyle $color }}">
+        <span class="h-6 w-6">{{ partial "icon.html" $s.icon }}</span>
+      </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

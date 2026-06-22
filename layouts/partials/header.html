@@ -1,0 +1,19 @@
+<header class="sticky top-0 z-50 border-b border-neon-cyan/30 bg-black/90 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <a href="{{ "/" | relURL }}" class="block h-10 w-auto [&>svg]:h-full [&>svg]:w-auto" aria-label="{{ .Site.Title }}">
+      {{ partial "brand-logo.html" . }}
+    </a>
+
+    <nav class="hidden items-center gap-8 font-mono text-sm uppercase tracking-wide md:flex">
+      {{ $current := .RelPermalink }}
+      {{ range .Site.Menus.main }}
+        {{ $entryURL := .URL | relURL }}
+        {{ $active := or (eq $current $entryURL) (and (ne $entryURL (relURL "/")) (hasPrefix $current $entryURL)) }}
+        <a href="{{ .URL | relURL }}"
+           class="transition-colors hover:text-neon-cyan {{ if $active }}border-b-2 border-neon-cyan text-neon-cyan{{ else }}text-gray-300{{ end }}">
+          {{ .Name }}
+        </a>
+      {{ end }}
+    </nav>
+  </div>
+</header>

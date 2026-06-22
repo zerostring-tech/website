@@ -1,0 +1,57 @@
+baseURL = 'https://www.zerostring.tech/'
+languageCode = 'en-us'
+title = 'Zero String Tech Ventures'
+
+[params]
+  tagline = "Where Bold Ideas Become Real Products"
+  heroTitleLine1 = "Every Great String,"
+  heroTitleLine2 = "Starts at Zero."
+  heroSubtitle = "We see every problem as an opportunity for innovation — and we're committed to turning bold ideas into real software."
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 10
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 20
+
+[[menu.main]]
+  name = "Projects"
+  url = "/projects/"
+  weight = 30
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 40
+
+[[menu.main]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 50
+
+[[menu.footer]]
+  name = "Home"
+  url = "/"
+  weight = 10
+
+[[menu.footer]]
+  name = "About"
+  url = "/about/"
+  weight = 20
+
+[[menu.footer]]
+  name = "Projects"
+  url = "/projects/"
+  weight = 30
+
+[[menu.footer]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 40
+
+[markup.goldmark.renderer]
+  unsafe = true
