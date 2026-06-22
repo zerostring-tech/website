@@ -5,15 +5,16 @@
     </a>
 
     <nav class="hidden items-center gap-8 font-mono text-sm uppercase tracking-wide md:flex">
-      {{ $current := .RelPermalink }}
-      {{ range .Site.Menus.main }}
-        {{ $entryURL := .URL | relURL }}
-        {{ $active := or (eq $current $entryURL) (and (ne $entryURL (relURL "/")) (hasPrefix $current $entryURL)) }}
-        <a href="{{ .URL | relURL }}"
-           class="transition-colors hover:text-neon-cyan {{ if $active }}border-b-2 border-neon-cyan text-neon-cyan{{ else }}text-gray-300{{ end }}">
-          {{ .Name }}
-        </a>
-      {{ end }}
+      {{ partial "nav-links.html" (dict "ctx" . "mobile" false) }}
     </nav>
+
+    <button type="button" id="nav-toggle" class="flex h-9 w-9 items-center justify-center text-neon-cyan md:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu">
+      <span class="h-5 w-5" data-icon-open>{{ partial "icon.html" "menu" }}</span>
+      <span class="hidden h-5 w-5" data-icon-close>{{ partial "icon.html" "close" }}</span>
+    </button>
   </div>
+
+  <nav id="mobile-nav" class="hidden border-t border-neon-cyan/20 px-6 py-2 font-mono text-sm uppercase tracking-wide md:hidden">
+    {{ partial "nav-links.html" (dict "ctx" . "mobile" true) }}
+  </nav>
 </header>

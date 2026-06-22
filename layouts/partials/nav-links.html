@@ -1,0 +1,13 @@
+{{ $ctx := .ctx }}
+{{ $mobile := .mobile }}
+{{ $current := $ctx.RelPermalink }}
+{{ $home := $ctx.Site.Home.RelPermalink }}
+{{ range $ctx.Site.Menus.main }}
+  {{ $entryURL := .URL | relURL }}
+  {{ $active := or (eq $current $entryURL) (and (ne $entryURL $home) (hasPrefix $current $entryURL)) }}
+  {{ if $mobile }}
+    <a href="{{ .URL | relURL }}" class="block border-b border-white/5 py-3 transition-colors hover:text-neon-cyan {{ if $active }}text-neon-cyan{{ else }}text-gray-300{{ end }}">{{ .Name }}</a>
+  {{ else }}
+    <a href="{{ .URL | relURL }}" class="transition-colors hover:text-neon-cyan {{ if $active }}border-b-2 border-neon-cyan text-neon-cyan{{ else }}text-gray-300{{ end }}">{{ .Name }}</a>
+  {{ end }}
+{{ end }}
