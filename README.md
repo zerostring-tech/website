@@ -1,6 +1,6 @@
 # Zero String Tech Ventures — Website
 
-Marketing site for [Zero String Tech Ventures](https://www.zerostring.tech), built with [Hugo](https://gohugo.io/) and [Tailwind CSS v4](https://tailwindcss.com/).
+Website for [Zero String Tech Ventures](https://www.zerostring.tech), built with [Hugo](https://gohugo.io/) and [Tailwind CSS v4](https://tailwindcss.com/).
 
 ## Stack
 
