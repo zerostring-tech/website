@@ -1,9 +1,18 @@
 baseURL = 'https://www.zerostring.tech/'
 languageCode = 'en-us'
 title = 'Zero String Tech Ventures'
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority    = 0.5
+  filename    = "sitemap.xml"
 
 [params]
   tagline = "Where Bold Ideas Become Real Products"
+  twitterHandle = "ZeroStringTech"
+  ogImage = "images/ogImage.jpg"
   heroTitleLine1 = "Every Great String,"
   heroTitleLine2 = "Starts at Zero."
   heroSubtitle = "We see every problem as an opportunity for innovation — and we're committed to turning bold ideas into real software."
